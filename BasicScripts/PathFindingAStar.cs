@@ -1,7 +1,7 @@
 using UnityEngine;
 public class PathFindingAStar : MonoBehaviour {
-	public NavMeshAgent agent;
-	public Transform    target;
+	private NavMeshAgent agent;
+	public  Transform    target;
 
 	public void Start() {
 		agent = GetComponent<NavMeshAgent>();
@@ -9,6 +9,6 @@ public class PathFindingAStar : MonoBehaviour {
 	}
 
 	public void Update() {
-		agent.SetDestination(target.position);	
+		agent.SetDestination(target.position);
 	}
 }
