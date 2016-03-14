@@ -30,13 +30,12 @@ public class FSMSimple : MonoBehaviour {
 	#endregion
 
 	#region Shooting
-	public Rigidbody bullet;
-	public Transform muzzle;
-	public float     bulletInitialForce;
-	public float     frequency;
-	public int       numberOfShoots;
-	public int       maxNumberOfShoots;
-
+	public  Rigidbody bullet;
+	public  Transform muzzle;
+	public  float     bulletInitialForce;
+	public  float     frequency;
+	public  int       maxNumberOfShoots;
+	private int       numberOfShoots;
 	#endregion
 
 	#region Firing
@@ -82,7 +81,7 @@ public class FSMSimple : MonoBehaviour {
 		Vector3 wpDir         = waypoints[currentWaypoint].position - transform.position;
 		transform.rotation    = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(wpDir), Time.deltaTime * rotSpeed);
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-		if (wpDir.sqrMagnitude <= distanceToChangeWaypoint) {
+		if (wpDir.magnitude <= distanceToChangeWaypoint) {
 			currentWaypoint++;
 			if (currentWaypoint >= waypoints.Length)
 				currentWaypoint = 0;
@@ -155,11 +154,11 @@ public class FSMSimple : MonoBehaviour {
 		if (timer >= flameTime) {
 			timer = 0;
 
-			if (dir.sqrMagnitude > distanceToAttack && dir.sqrMagnitude <= distanceToReturnChase) {
+			if (dir.magnitude > distanceToAttack && dir.magnitude <= distanceToReturnChase) {
 				state = FSMStates.Chasing;
 				flame.SetActive(false);
 			}
-			else if (dir.sqrMagnitude > distanceToReturnChase) {
+			else if (dir.magnitude > distanceToReturnChase) {
 				state = FSMStates.Waypoints;
 				flame.SetActive(false);
 			}
