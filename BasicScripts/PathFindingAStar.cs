@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AI;
+
 public class PathFindingAStar : MonoBehaviour {
 	private NavMeshAgent agent;
 	public  Transform    target;
